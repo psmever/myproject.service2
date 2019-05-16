@@ -9,10 +9,19 @@
 .idea
 
 writable/cache/*
+!writable/cache/index.html
+
 writable/debugbar/*
+!writable/debugbar/.gitkee
+
 writable/logs/*
-writable/ession/*
+!writable/logs/index.html
+
+writable/session/*
+!writable/session/index.html
+
 writable/uploads/*
+!writable/uploads/index.html
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
