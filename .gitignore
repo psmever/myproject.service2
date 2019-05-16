@@ -5,6 +5,9 @@
 !*/cache/index.html
 !*/cache/.htaccess
 
+.env
+.idea
+
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
