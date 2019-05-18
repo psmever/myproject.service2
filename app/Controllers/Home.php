@@ -9,6 +9,16 @@ class Home extends BaseController
 	{
 		return view('welcome_message');
 	}
+	
+	public function test()
+	{
+		echo "<pre>";
+		echo 'APP_NAMESPACE: '.APP_NAMESPACE.PHP_EOL;
+		echo 'ROOTPATH: '.ROOTPATH.PHP_EOL;
+		
+		
+		echo "</pre>";
+	}
 
 	//--------------------------------------------------------------------
 
