@@ -1,4 +1,10 @@
 <?php
+
+/**
+ *
+ * site default url setting
+ */
+
 $__serverPort = (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : '';
 $__serverName = (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
 define('APP_BASE_URL', ($__serverPort == 443 ? 'https' : 'http') . "://{$__serverName}".( $__serverPort != 80 || $__serverPort != 443  ? ':'.$__serverPort: ''));
