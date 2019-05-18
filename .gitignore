@@ -5,6 +5,8 @@
 !*/cache/index.html
 !*/cache/.htaccess
 
+.vscode
+.DS_Store
 .env
 .idea
 
