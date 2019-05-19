@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 랜덤 사용요 UID 생성
+ */
 if ( ! function_exists('getRandomUserUid'))
 {
 	//랜덤한 사용자 아이디 생성
@@ -9,10 +12,15 @@ if ( ! function_exists('getRandomUserUid'))
 	}
 }
 
-
 if ( ! function_exists('getPasswordHash'))
 {
 	// 패스워드 해시
+	/**
+	 * @param string $plaintext
+	 * @return bool|string
+	 *
+	 * 패스워스 해시 생성
+	 */
 	function getPasswordHash($plaintext = '')
 	{
 		return password_hash(SITE_PASSWORD_DEFAULT . $plaintext, PASSWORD_DEFAULT);
@@ -22,7 +30,13 @@ if ( ! function_exists('getPasswordHash'))
 
 if ( ! function_exists('getPasswordVerify'))
 {
-	// 해스워드 해시 체크
+	/**
+	 * @param string $password
+	 * @param string $hash_text
+	 * @return bool
+	 *
+	 * 패스 워스 해시 비교
+	 */
 	function getPasswordVerify($password = '', $hash_text = '')
 	{
 		return password_verify(SITE_PASSWORD_DEFAULT . $password, $hash_text);
@@ -32,7 +46,12 @@ if ( ! function_exists('getPasswordVerify'))
 
 if ( ! function_exists('getRandCode'))
 {
-	// 특수 기호 포함 랜덤한 문자열 반환
+	/**
+	 * @param $length
+	 * @return string
+	 *
+	 * 특수 기호 포함 랜덤 문자열 생성
+	 */
 	function getRandCode($length = SITE_RAND_CODE_LENGTH)
 	{
 		return base64_encode(openssl_random_pseudo_bytes($length));
@@ -42,7 +61,11 @@ if ( ! function_exists('getRandCode'))
 
 if ( ! function_exists('getRandString'))
 {
-	// 특수 기호 포함 랜덤한 문자열 반환
+	/**
+	 * @return string
+	 *
+	 * 특수 기호 포함 랜덤한 문자열 반환
+	 */
 	function getRandString()
 	{
 		return hash('sha256', mt_rand());
@@ -54,7 +77,13 @@ if ( ! function_exists('getRandString'))
 
 if ( ! function_exists('getRandomString'))
 {
-	// permitted_chars 이용 랜덤한 문자열 반환
+	/**
+	 * @param int $strength
+	 *
+	 * @return string
+	 *
+	 * permitted_chars 이용 랜덤한 문자열 반환
+	 */
 	function getRandomString($strength = 16)
 	{
 		$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -74,7 +103,13 @@ if ( ! function_exists('getRandomString'))
 
 if ( ! function_exists('userEmailValidCheck'))
 {
-	// 이메일 형식 체크
+	/**
+	 * @param string $email_string
+	 *
+	 * @return bool
+	 *
+	 * 이메일 형식 체크
+	 */
 	function userEmailValidCheck ($email_string = '')
 	{
 		if ( !preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email_string) ) {
@@ -87,7 +122,13 @@ if ( ! function_exists('userEmailValidCheck'))
 
 if ( ! function_exists('userNameFirstWordCheck'))
 {
-	// 사용자 이름 첫번째 단어 체크
+	/**
+	 * @param string $user_name_string
+	 *
+	 * @return bool
+	 *
+	 * 사용자 이름 첫번째 단어 체크
+	 */
 	function userNameFirstWordCheck ($user_name_string = '')
 	{
 		if ( !preg_match("/^[a-z]/i", $user_name_string) ) {
@@ -101,7 +142,13 @@ if ( ! function_exists('userNameFirstWordCheck'))
 
 if ( ! function_exists('userNameValidCheck'))
 {
-	// 사용자 이름 형식 체크
+	/**
+	 * @param string $user_name_string
+	 *
+	 * @return bool
+	 *
+	 * 사용자 이름 형식 체크
+	 */
 	function userNameValidCheck ($user_name_string = '')
 	{
 		if ( !preg_match("/^[a-z0-9_-]{3,16}$/", $user_name_string) ) {
@@ -116,7 +163,13 @@ if ( ! function_exists('userNameValidCheck'))
 
 if ( ! function_exists('userPasswordValidCheck'))
 {
-	// 패스워드 체크
+	/**
+	 * @param string $password_string
+	 *
+	 * @return bool
+	 *
+	 * 패스워드 체크
+	 */
 	function userPasswordValidCheck ($password_string = '')
 	{
 		if ( !preg_match('/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/', $password_string) ) {
@@ -130,7 +183,13 @@ if ( ! function_exists('userPasswordValidCheck'))
 
 if ( ! function_exists('convertArrayToObject'))
 {
-	// 배열을 object 타입으로
+	/**
+	 * @param $defs
+	 *
+	 * @return object
+	 *
+	 * 배열을 object 타입으로
+	 */
 	function convertArrayToObject ($defs)
 	{
 		$innerfunc = function ($a) use (&$innerfunc) {
@@ -144,7 +203,13 @@ if ( ! function_exists('convertArrayToObject'))
 
 if ( ! function_exists('convertBirthNumberToBirthDayType1'))
 {
-	// 생년월일 표시 1
+	/**
+	 * @param null $birthNumber
+	 *
+	 * @return string
+	 *
+	 * 생년월일 표시 1
+	 */
 	function convertBirthNumberToBirthDayType1 ($birthNumber = NULL)
 	{
 		return substr($birthNumber, 0, 4) . '. ' . substr($birthNumber, 4, 2) . '. ' . substr($birthNumber, 6, 2);
@@ -168,7 +233,13 @@ if ( ! function_exists('convertBirthNumberToBirthDay'))
 
 if ( ! function_exists('convertMysqlDateTimeType1'))
 {
-	// mysql datetime convert
+	/**
+	 * @param null $mysqlDateTime
+	 *
+	 * @return false|int
+	 *
+	 * mysql datetime convert
+	 */
 	function convertMysqlDateTimeType1 ($mysqlDateTime = NULL)
 	{
 		return strtotime($mysqlDateTime);
@@ -178,7 +249,13 @@ if ( ! function_exists('convertMysqlDateTimeType1'))
 
 if ( ! function_exists('convertMysqlDateTimeType2'))
 {
-	// mysql datetime convert
+	/**
+	 * @param null $mysqlDateTime
+	 *
+	 * @return false|string
+	 *
+	 * mysql datetime convert
+	 */
 	function convertMysqlDateTimeType2 ($mysqlDateTime = NULL)
 	{
 		return date('Y. m. d', strtotime($mysqlDateTime));
@@ -187,7 +264,13 @@ if ( ! function_exists('convertMysqlDateTimeType2'))
 
 if ( ! function_exists('convertTimeToString'))
 {
-	// timestamp 를 문자열 시간형식으로 반환
+	/**
+	 * @param null $timestamp
+	 *
+	 * @return false|string
+	 *
+	 * timestamp 를 문자열 시간형식으로 반환
+	 */
 	function convertTimeToString ($timestamp = NULL)
 	{
 		if ( !ctype_digit($timestamp) ) {
@@ -262,7 +345,13 @@ if ( ! function_exists('convertTimeToString'))
 
 if ( ! function_exists('telNumberAddHyphen'))
 {
-	// 전화번호에 하이픈 추가
+	/**
+	 * @param null $telnumber
+	 *
+	 * @return bool|string|string[]|null
+	 *
+	 * 전화번호에 하이픈 추가
+	 */
 	function telNumberAddHyphen ($telnumber = NULL)
 	{
 		if ( $telnumber == FALSE ) return FALSE;
@@ -284,7 +373,13 @@ if ( ! function_exists('telNumberAddHyphen'))
 
 if ( ! function_exists('textLineAddPtag'))
 {
-	// br, 엔터에 p 테그 추가
+	/**
+	 * @param $plain_text
+	 *
+	 * @return bool|string
+	 *
+	 * br, 엔터에 p 테그 추가
+	 */
 	function textLineAddPtag ($plain_text)
 	{
 		if ( empty($plain_text) ) return FALSE;
@@ -317,7 +412,13 @@ if ( ! function_exists('textLineAddPtag'))
 
 if ( ! function_exists('getUserProfileWebSiteItem'))
 {
-	// http https 삭제
+	/**
+	 * @param null $urlString
+	 *
+	 * @return bool|null
+	 *
+	 * http https 삭제
+	 */
 	function getUserProfileWebSiteItem ($urlString = NULL)
 	{
 		if ( $urlString == NULL ) return FALSE;
@@ -339,7 +440,13 @@ if ( ! function_exists('getUserProfileWebSiteItem'))
 
 if ( ! function_exists('strip_tags_content'))
 {
-	// tag all delete
+	/**
+	 * @param $text
+	 *
+	 * @return string
+	 *
+	 * tag all delete
+	 */
 	function strip_tags_content ($text)
 	{
 		return strip_tags($text);
@@ -349,7 +456,13 @@ if ( ! function_exists('strip_tags_content'))
 
 if ( ! function_exists('getProfilePhoneNumber'))
 {
-	// user profile only number
+	/**
+	 * @param null $phoneString
+	 *
+	 * @return bool|string|string[]|null
+	 *
+	 * user profile only number
+	 */
 	function getProfilePhoneNumber ($phoneString = NULL)
 	{
 		try {
@@ -365,7 +478,13 @@ if ( ! function_exists('getProfilePhoneNumber'))
 
 if ( ! function_exists('makeDirectory'))
 {
-	// 디렉토리 없으면 생성
+	/**
+	 * @param null $targetDirectory
+	 *
+	 * @return bool
+	 *
+	 * 디렉토리 없으면 생성
+	 */
 	function makeDirectory ($targetDirectory = NULL)
 	{
 		if ( empty($targetDirectory) ) return FALSE;
@@ -380,8 +499,16 @@ if ( ! function_exists('makeDirectory'))
 
 if ( ! function_exists('uniqidReal'))
 {
-	// return example
-	// string(13) "126371711d9a5"
+	
+	/**
+	 * @param int $lenght
+	 *
+	 * @return bool|string
+	 * @throws Exception
+	 *
+	 * return example
+	 * string(13) "126371711d9a5"
+	 */
 	function uniqidReal ($lenght = 13)
 	{
 		// uniqid gives 13 chars, but you could adjust it to your needs.
@@ -398,15 +525,18 @@ if ( ! function_exists('uniqidReal'))
 
 if ( ! function_exists('encrypt_decrypt'))
 {
-	/*
+	/**
+	 * @param $action
+	 * @param $string
+	 *
+	 * @return bool|string
+	 *
 	 * 간단한 암호화
 	 *
-	 *
 	 * $message    = "This text is secret";
-	 * $ciphertext =  encrypt_decrypt('encrypt', $fline text);
-	 * $plaintext  =  encrypt_decrypt('decrypt', $enc text);
-	 *
-	 * */
+	 * $ciphertext =  encrypt_decrypt('encrypt',$fline text);
+	 * $plaintext  =  encrypt_decrypt('decrypt', $enc_text);
+	 */
 	function encrypt_decrypt ($action, $string)
 	{
 		$secret_key = SITE_TOKEN_KEY;
@@ -423,6 +553,7 @@ if ( ! function_exists('encrypt_decrypt'))
 		} else if ( $action == 'decrypt' ) {
 			$output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
 		}
+		
 		return $output;
 	}
 }
