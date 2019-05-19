@@ -85,13 +85,35 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest auto
 |--------------------------------------------------------------------------
 */
 
-defined('SITE_RESOURCE_URL')							            || define('SITE_RESOURCE_URL', APP_BASE_URL.'/resource');
+$base_document_root = (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : realpath(basename(getenv("SCRIPT_NAME")));
+if(isset($_SERVER['HTTP_HOST']))
+{
+	$base_url = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on' ? 'https' : 'http';
+	$base_url .= '://'. $_SERVER['HTTP_HOST'];
+	$base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+	
+	$base_uri = parse_url($base_url, PHP_URL_PATH);
+	if(substr($base_uri, 0, 1) != '/') $base_uri = '/'.$base_uri;
+	if(substr($base_uri, -1, 1) != '/') $base_uri .= '/';
+}
+else
+{
+	$base_url = 'http://localhost/';
+	$base_uri = '/';
+}
 
-defined('SITE_UPLOAD_DIR')							                || define('SITE_UPLOAD_DIR', APP_DOCUMENT_ROOT.'/upload');
-defined('SITE_UPLOAD_URL')							                || define('SITE_UPLOAD_URL', APP_BASE_URL.'/upload');
 
-defined('SITE_IMAGE_DIR')							                || define('SITE_IMAGE_DIR', APP_DOCUMENT_ROOT.'/image');
-defined('SITE_IMAGE_URL')							                || define('SITE_IMAGE_URL', APP_BASE_URL.'/image');
+defined('CONST_BASE_URL')							                    || define('CONST_BASE_URL', $base_url);
+defined('CONST_BASE_URI')							                    || define('CONST_BASE_URI', $base_uri);
+defined('CONST_DOCUMENT_ROOT')							            || define('CONST_DOCUMENT_ROOT', $base_document_root);
+
+defined('SITE_RESOURCE_URL')							            || define('SITE_RESOURCE_URL', CONST_BASE_URL.'/resource');
+
+defined('SITE_UPLOAD_DIR')							                || define('SITE_UPLOAD_DIR', CONST_DOCUMENT_ROOT.'/upload');
+defined('SITE_UPLOAD_URL')							                || define('SITE_UPLOAD_URL', CONST_BASE_URL.'/upload');
+
+defined('SITE_IMAGE_DIR')							                || define('SITE_IMAGE_DIR', CONST_DOCUMENT_ROOT.'/image');
+defined('SITE_IMAGE_URL')							                || define('SITE_IMAGE_URL', CONST_BASE_URL.'/image');
 
 defined('SITE_PROFILE_IMAGE_DIR')							        || define('SITE_PROFILE_IMAGE_DIR', SITE_IMAGE_DIR.'/profile');
 defined('SITE_PROFILE_IMAGE_URL')							        || define('SITE_PROFILE_IMAGE_URL', SITE_IMAGE_URL.'/profile');
@@ -100,6 +122,8 @@ defined('SITE_POST_IMAGE_DIR')							            || define('SITE_POST_IMAGE_DIR'
 defined('SITE_POST_IMAGE_URL')							            || define('SITE_POST_IMAGE_URL', SITE_IMAGE_URL.'/post');
 
 defined('SITE_DEFAULT_PROFILE_IMAGE_URL')                           || define('SITE_DEFAULT_PROFILE_IMAGE_URL', SITE_RESOURCE_URL.'/img/default_profile.png');
+
+
 /*
 |--------------------------------------------------------------------------
 | SITE Define
@@ -147,3 +171,6 @@ defined('SITE_TIMELINE_UPLOAD_IMAGE_CODE')      					|| define('SITE_TIMELINE_UP
 
 defined('SITE_TIMELINE_CONTENTS_TYPE_BASIC')      					|| define('SITE_TIMELINE_CONTENTS_TYPE_BASIC', 'C03010');// 포스트글 타입 기본(이미지 없이)
 defined('SITE_TIMELINE_CONTENTS_TYPE_PHOTO')      					|| define('SITE_TIMELINE_CONTENTS_TYPE_PHOTO', 'C03020');// 포스트글 타입 사진글
+
+
+unset($base_uri, $base_url, $base_document_root);
