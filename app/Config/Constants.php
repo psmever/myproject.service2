@@ -75,3 +75,102 @@ defined('EXIT_USER_INPUT')     || define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| SITE Directory URL Define
+|--------------------------------------------------------------------------
+*/
+
+$base_document_root = (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : realpath(basename(getenv("SCRIPT_NAME")));
+if(isset($_SERVER['HTTP_HOST']))
+{
+	$base_url = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on' ? 'https' : 'http';
+	$base_url .= '://'. $_SERVER['HTTP_HOST'];
+	$base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+	
+	$base_uri = parse_url($base_url, PHP_URL_PATH);
+	if(substr($base_uri, 0, 1) != '/') $base_uri = '/'.$base_uri;
+	if(substr($base_uri, -1, 1) != '/') $base_uri .= '/';
+}
+else
+{
+	$base_url = 'http://localhost/';
+	$base_uri = '/';
+}
+
+
+defined('CONST_BASE_URL')							                    || define('CONST_BASE_URL', $base_url);
+defined('CONST_BASE_URI')							                    || define('CONST_BASE_URI', $base_uri);
+defined('CONST_DOCUMENT_ROOT')							            || define('CONST_DOCUMENT_ROOT', $base_document_root);
+
+defined('SITE_RESOURCE_URL')							            || define('SITE_RESOURCE_URL', CONST_BASE_URL.'/resource');
+
+defined('SITE_UPLOAD_DIR')							                || define('SITE_UPLOAD_DIR', CONST_DOCUMENT_ROOT.'/upload');
+defined('SITE_UPLOAD_URL')							                || define('SITE_UPLOAD_URL', CONST_BASE_URL.'/upload');
+
+defined('SITE_IMAGE_DIR')							                || define('SITE_IMAGE_DIR', CONST_DOCUMENT_ROOT.'/image');
+defined('SITE_IMAGE_URL')							                || define('SITE_IMAGE_URL', CONST_BASE_URL.'/image');
+
+defined('SITE_PROFILE_IMAGE_DIR')							        || define('SITE_PROFILE_IMAGE_DIR', SITE_IMAGE_DIR.'/profile');
+defined('SITE_PROFILE_IMAGE_URL')							        || define('SITE_PROFILE_IMAGE_URL', SITE_IMAGE_URL.'/profile');
+
+defined('SITE_POST_IMAGE_DIR')							            || define('SITE_POST_IMAGE_DIR', SITE_IMAGE_DIR.'/post');
+defined('SITE_POST_IMAGE_URL')							            || define('SITE_POST_IMAGE_URL', SITE_IMAGE_URL.'/post');
+
+defined('SITE_DEFAULT_PROFILE_IMAGE_URL')                           || define('SITE_DEFAULT_PROFILE_IMAGE_URL', SITE_RESOURCE_URL.'/img/default_profile.png');
+
+
+/*
+|--------------------------------------------------------------------------
+| SITE Define
+|--------------------------------------------------------------------------
+*/
+
+// 싸이트 명
+defined('SITE_NAME')							                    || define('SITE_NAME', 'myproject');
+
+defined('SITE_PASSWORD_DEFAULT')							        || define('SITE_PASSWORD_DEFAULT', 'myproject_'); // password_hash KEY
+defined('SITE_TOKEN_KEY')      								        || define('SITE_TOKEN_KEY', 'vyqJuA/qNwkttc5dW1u1mWaV7vAiHuqTp9kVzgLT'); // JWT Key
+defined('SITE_TOKEN_KEY_IV')      								    || define('SITE_TOKEN_KEY_IV', 'V3rBjIvf/3CjgV+CCyMeP7NHHU9Sr5j0Rd48Jw1Slc5BOAn6wsFJZvMvmSACrF+dP4g='); // JWT Key
+defined('SITE_TOKEN_ALGORITHM')      						        || define('SITE_TOKEN_ALGORITHM', 'HS256'); // JWT encode decode Algorithm
+defined('SITE_TOKEN_EXPIRE_STRTOTIME') 						        || define('SITE_TOKEN_EXPIRE_STRTOTIME', '+1 minutes');
+
+defined('SITE_USER_TOKEN_EXPIRE_STRTOTIME') 						|| define('SITE_USER_TOKEN_EXPIRE_STRTOTIME', '+10 day'); // 사용자 토큰 만료 시간
+defined('SITE_AACCESS_TOKEN_EXPIRE_STRTOTIME') 						|| define('SITE_AACCESS_TOKEN_EXPIRE_STRTOTIME', '+5 day'); // 엑세스 토큰 만료 시간
+
+defined('SITE_RAND_CODE_LENGTH')      						        || define('SITE_RAND_CODE_LENGTH', '50'); // 랜덤 코드 길이
+
+defined('USER_WEB_TYPE_CODE')      						            || define('USER_WEB_TYPE_CODE', 'U01010'); // 웹 가입 회원 타입 코드
+defined('USER_IOS_TYPE_CODE')      						            || define('USER_IOS_TYPE_CODE', 'U01020'); // 웹 가입 회원 타입 코드
+defined('USER_ANDROID_TYPE_CODE')      						        || define('USER_ANDROID_TYPE_CODE', 'U01030'); // 웹 가입 회원 타입 코드
+
+defined('CLIENT_WEB_TYPE_CODE')      						        || define('CLIENT_WEB_TYPE_CODE', 'C01010'); // 웹 가입 회원 타입 코드
+defined('CLIENT_IOS_TYPE_CODE')      						        || define('CLIENT_IOS_TYPE_CODE', 'C01020'); // 사용자 기본 가입 레벨 코드
+defined('CLIENT_ANDROID_TYPE_CODE')      						    || define('CLIENT_ANDROID_TYPE_CODE', 'C01030'); // 사용자 기본 가입 레벨 코드
+
+defined('USER_DEFAULT_LEVEL_CODE')      						    || define('USER_DEFAULT_LEVEL_CODE', 'U02001'); // 사용자 기본 가입 레벨 코드
+defined('USER_DEFAULT_AUTH_LEVEL_CODE')      						|| define('USER_DEFAULT_AUTH_LEVEL_CODE', 'U02010'); // 사용자 기본 가입 레벨 코드
+
+defined('SITE_SMTP_EMAIL_ADDRESS')      						    || define('SITE_SMTP_EMAIL_ADDRESS', 'psmever@gmail.com'); // 싸이트 SMTP 이메일 주소
+defined('SITE_SMTP_EMAIL_PASSWORD')      						    || define('SITE_SMTP_EMAIL_PASSWORD', '!Mingun2018'); // 싸이트 SMTP 이메일 패스워드
+
+
+defined('DEFAULT_PROFILE_IMAGE_URL')      						    || define('DEFAULT_PROFILE_IMAGE_URL', '/resource/img/default_profile.png'); // 싸이트 SMTP 이메일 패스워드
+defined('DEFAULT_TODAY_PRIVATE_TYPE')      						    || define('DEFAULT_TODAY_PRIVATE_TYPE', 'C02010'); // 투데이 기본 공개 코드값
+
+defined('PROFILE_IMAGE_UPLOAD_CODE')      						    || define('PROFILE_IMAGE_UPLOAD_CODE', 'S02010'); // 프로필 이미지 코드
+defined('TODAY_IMAGE_UPLOAD_CODE')      						    || define('TODAY_IMAGE_UPLOAD_CODE', 'S02020');// 프로필 TODAY 이미지 코드
+
+defined('SITE_UPLOAD_IMAGE_SIZE_LIMIT')      						|| define('SITE_UPLOAD_IMAGE_SIZE_LIMIT', 10000000000);// 프로필 TODAY 이미지 코드
+
+defined('SITE_TIMELINE_UPLOAD_IMAGE_CODE')      					|| define('SITE_TIMELINE_UPLOAD_IMAGE_CODE', 'S03010');// 기본 파일 구분 timeline 이미지 코드
+
+defined('SITE_TIMELINE_CONTENTS_TYPE_BASIC')      					|| define('SITE_TIMELINE_CONTENTS_TYPE_BASIC', 'C03010');// 포스트글 타입 기본(이미지 없이)
+defined('SITE_TIMELINE_CONTENTS_TYPE_PHOTO')      					|| define('SITE_TIMELINE_CONTENTS_TYPE_PHOTO', 'C03020');// 포스트글 타입 사진글
+
+
+unset($base_uri, $base_url, $base_document_root);
