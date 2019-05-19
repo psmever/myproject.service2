@@ -97,3 +97,14 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
  * site url router add
  */
 $routes->add('dev/test', 'Test::index', ['namespace' => 'App\Controllers\Dev']);
+
+$routes->add('api/v1/pub/auth/authorize/(:any)', 'Authorize::$1', ['namespace' => 'App\Controllers\Api\v1\Pub\Auth']);
+
+//$routes->group('api/v1/pub/auth/authorize/(:any)', function($routes)
+//{
+//	$routes->group('users', function($routes)
+//	{
+//		$routes->add('list', 'Admin\Users::list');
+//	});
+//
+//});
