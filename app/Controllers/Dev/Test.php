@@ -7,7 +7,10 @@ class Test extends ServiceController
 	
 	public function index()
 	{
-		echo __FILE__;
+		
+		$a = file_get_contents("./log.txt");
+		
+		print_r(json_decode(html_entity_decode($a)));
 	}
 	
 	//--------------------------------------------------------------------

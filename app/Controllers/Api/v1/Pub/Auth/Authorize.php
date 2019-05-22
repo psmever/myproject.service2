@@ -14,19 +14,24 @@ class Authorize extends ApiController
 	
 	public function test()
 	{
-		$master = new \App\Models\MasterModel();
+		$master = new \App\Models\Api\MasterModel();
 		
 		
 		$result = $master->getMember();
 		
-		print_r($result);
+//		print_r($result);
 		
 	}
 	
 	
 	public function login()
 	{
-	
+		$master = new \App\Models\Api\MasterModel();
+		
+		
+		$result = $master->getTestData();
+		
+//		echo json_encode($result);
 	}
 	
 	
