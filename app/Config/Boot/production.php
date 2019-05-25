@@ -30,4 +30,3 @@ if (! is_dir(WRITEPATH . 'logs' . '/' . CI_LOG_SUB_PATH))
 {
 	mkdir(WRITEPATH . 'logs' . '/' . CI_LOG_SUB_PATH, 0777);
 }
-}
