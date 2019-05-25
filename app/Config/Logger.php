@@ -79,6 +79,7 @@ class Logger extends BaseConfig
 	| the handler on top and continuing down.
 	|
 	*/
+	
 	public $handlers = [
 
 		//--------------------------------------------------------------------
@@ -105,7 +106,7 @@ class Logger extends BaseConfig
 			 * Leave this BLANK unless you would like to set something other than the default
 			 * writeable/logs/ directory. Use a full getServer path with trailing slash.
 			 */
-			'path'            => WRITEPATH . 'logs/',
+			'path'            => WRITEPATH . 'logs/' . CI_LOG_SUB_PATH . '/',
 
 			/*
 			 * The default filename extension for log files. The default 'php' allows for
