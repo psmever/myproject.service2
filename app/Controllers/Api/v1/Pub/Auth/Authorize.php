@@ -31,6 +31,9 @@ class Authorize extends ApiController
 		
 		$result = $master->getTestData();
 		
+		
+		
+		
 //		echo json_encode($result);
 	}
 	

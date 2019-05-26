@@ -30,3 +30,13 @@ defined('SHOW_DEBUG_BACKTRACE') || define('SHOW_DEBUG_BACKTRACE', true);
  */
 
 defined('CI_DEBUG') || define('CI_DEBUG', 0);
+
+/**
+ * my Setting
+ */
+defined('CI_LOG_SUB_PATH') || define('CI_LOG_SUB_PATH', date('Ymd'));
+
+if (! is_dir(WRITEPATH . 'logs' . '/' . CI_LOG_SUB_PATH))
+{
+	mkdir(WRITEPATH . 'logs' . '/' . CI_LOG_SUB_PATH, 0777);
+}
