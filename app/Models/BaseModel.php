@@ -12,16 +12,18 @@ class BaseModel extends Model
 		parent::__construct();
 	}
 	
-	public function modelErrorProcess($e)
+	public function modelExceptionControl($e)
 	{
 		
-		try {
+		try
+		{
+
 			$pQuery = $this->db->prepare(function($db)
 			{
 				$sql = "
 					INSERT INTO tbl_log_master
 					(division, server_data, log_message, log_code, log_data, log_date, regist_date)
-					VALUES('L01010', ?, ?, ?, ?, now(), now());
+					VALUES(".SITE_DB_EXCEPTION_CODE.", ?, ?, ?, ?, now(), now());
 				";
 				
 				return (new Query($db))->setQuery($sql);
@@ -35,7 +37,7 @@ class BaseModel extends Model
 		{
 			$logInitId = date('YmdHis');
 			
-			log_message('critical', SITE_ERROR_NAME.'[***]L01010[***]{logid}[***]{logtime}[***]{SERVER}[***]{getMessage}[***]{exception}', [
+			log_message('critical', SITE_ERROR_NAME.'[***]'.SITE_DB_EXCEPTION_CODE.'[***]{logid}[***]{logtime}[***]{SERVER}[***]{getMessage}[***]{exception}', [
 					'logid' => $logInitId,
 					'logtime' => date('Y-m-d H:i:s'),
 					'getMessage' => json_encode($e->getMessage(), true),

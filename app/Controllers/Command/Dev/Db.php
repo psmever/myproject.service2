@@ -75,7 +75,7 @@ class Db extends CommandController
 			],
 			'L01' => [
 				['code_id' => '010', 'code_name' => 'DB ERROR', 'code_comment' => '디비 에러' ],
-				['code_id' => '010', 'code_name' => 'DB ERROR', 'code_comment' => '디비 에러' ],
+				['code_id' => '020', 'code_name' => 'API ERROR', 'code_comment' => 'API 에러' ],
 			],
 		
 		];

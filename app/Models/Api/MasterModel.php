@@ -59,46 +59,22 @@ class MasterModel extends BaseModel
 	// test table
 	public function getTestData()
 	{
-		try {
-			$builder = $this->db->table('1');
+		try
+		{
+			$builder = $this->db->table('tbl_user_master');
 			$builder->select('*');
 			$query = $builder->get();
 			$result = $query->getResult();
-			$error = $result->error();
+//			$error = $result->error();
+
+//			print_r($result);
 			
-			if($error) {
-//				throw new \CodeIgniter\Database\Exceptions\DatabaseException();
-			}
 		}
 		catch (\Exception $e)
 		{
-			
-			BaseModel::modelErrorProcess($e);
+			BaseModel::modelExceptionControl($e);
 		}
 		
-		
-		
-		
-		
-
-
-//		$this->db->select('*');
-//		$this->db->from('tbl_user_master');
-		
-//		echo $this->db->get_compiled_select();
-//		$getResult = $this->db->get();
-//		$db_error = $this->db->error();
-//
-//		if($db_error['code'])
-//		{
-//			echo "error";
-//			return $this->setModelDBError($this->db->error());
-//		}
-//		else
-//		{
-//			echo "ok";
-//			return $this->setModelReturnData($getResult->result_array());
-//		}
 	}
 	
 	// 회원 가입시 ip 로그

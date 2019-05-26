@@ -2,33 +2,21 @@
 
 use App\Controllers\ServiceController;
 
+
 class Test extends ServiceController
 {
 	
 	public function index()
 	{
-//		echo WRITEPATH . 'logs/';
-		
-
-		$log_contents = file_get_contents(WRITEPATH . 'logs/'.'log-2019-05-25.php');
-		
-		$arrayLog = explode(PHP_EOL, $log_contents);
-		
-		
-		echo "<pre>";
-		print_r($arrayLog);
-		
-		
-		$str = $arrayLog[30];
-		
-		echo $str;
-		echo "</pre>";
-		echo ENVIRONMENT;
-		
-//		$a = file_get_contents("./log.txt");
-//
-//		print_r(json_decode(html_entity_decode($a)));
+	
 	}
+	
+	public function user()
+	{
+		$master = new \App\Models\Api\MasterModel();
+		$result = $master->getTestData();
+	}
+	
 	
 	public function getlog()
 	{
