@@ -35,11 +35,25 @@ class BaseModel extends Model
 //			log_message('ERROR', json_encode ($logMessage, JSON_FORCE_OBJECT));
 //			$jbstr = implode( '/', $logMessage );
 			
-			log_message('critical', '[Site_error] {exception}', ['exception' => json_encode([
-				$e->getMessage(),
-				(array)$e,
-				$_SERVER
-			], true)]);
+			$logInitId = date('YmdHis');
+			
+			log_message('critical', 'L01010[***]{logid}[***]{logtime}[***]{SERVER}[***]{getMessage}[***]{exception}', [
+					'logid' => $logInitId,
+					'logtime' => date('Y-m-d H:i:s'),
+					'getMessage' => json_encode($e->getMessage(), true),
+					'exception' => json_encode((array)$e, true),
+					'SERVER' => json_encode($_SERVER, true),
+				]
+			);
+//
+//			log_message('critical', '[Site_error] {exception}', ['exception' => json_encode([
+//				$e->getMessage(),
+//				(array)$e,
+//				$_SERVER
+//			], true)]);
+//
+			
+			
 			
 			
 		}
