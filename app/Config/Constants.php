@@ -172,5 +172,7 @@ defined('SITE_TIMELINE_UPLOAD_IMAGE_CODE')      					|| define('SITE_TIMELINE_UP
 defined('SITE_TIMELINE_CONTENTS_TYPE_BASIC')      					|| define('SITE_TIMELINE_CONTENTS_TYPE_BASIC', 'C03010');// 포스트글 타입 기본(이미지 없이)
 defined('SITE_TIMELINE_CONTENTS_TYPE_PHOTO')      					|| define('SITE_TIMELINE_CONTENTS_TYPE_PHOTO', 'C03020');// 포스트글 타입 사진글
 
+defined('SITE_ERROR_NAME')      					|| define('SITE_ERROR_NAME', '[SITE_ERROR]');// 포스트글 타입 사진글
+
 
 unset($base_uri, $base_url, $base_document_root);

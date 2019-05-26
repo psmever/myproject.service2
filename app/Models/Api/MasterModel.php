@@ -61,9 +61,6 @@ class MasterModel extends BaseModel
 	{
 		try {
 			$builder = $this->db->table('1');
-//			print_r($builder);
-			
-			
 			$builder->select('*');
 			$query = $builder->get();
 			$result = $query->getResult();
@@ -72,22 +69,11 @@ class MasterModel extends BaseModel
 			if($error) {
 //				throw new \CodeIgniter\Database\Exceptions\DatabaseException();
 			}
-//
-//			print_r($error);
-//			print_r($this->db->getErrorCode());
 		}
 		catch (\Exception $e)
 		{
 			
-			echo "asdas";
-			
 			BaseModel::modelErrorProcess($e);
-			// do something here...
-//			throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
-
-//			print_r($e->getMessage());
-//			print_r($e->getCode());
-//			print_r($e);
 		}
 		
 		

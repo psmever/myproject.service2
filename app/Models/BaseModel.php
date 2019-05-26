@@ -20,28 +20,22 @@ class BaseModel extends Model
 			{
 				$sql = "
 					INSERT INTO tbl_log_master
-					(division, server_data, log_message, log_code, log_data, date_date, regist_date)
+					(division, server_data, log_message, log_code, log_data, log_date, regist_date)
 					VALUES('L01010', ?, ?, ?, ?, now(), now());
 				";
 				
 				return (new Query($db))->setQuery($sql);
 			});
 			
-			$results = $pQuery->execute($e->getMessage(), $e->getCode(), json_encode ((array) $e, JSON_FORCE_OBJECT), json_encode ($_SERVER, JSON_FORCE_OBJECT));
+			$pQuery->execute(json_encode ($_SERVER, JSON_FORCE_OBJECT), $e->getMessage(), $e->getCode(), json_encode ((array) $e, JSON_FORCE_OBJECT));
+			
+			$pQuery->close();
 		}
 		catch (\Exception $e)
 		{
-			echo json_encode([
-				$e->getMessage(),
-				(array)$e,
-				$_SERVER
-			]);
-//			log_message('ERROR', json_encode ($logMessage, JSON_FORCE_OBJECT));
-//			$jbstr = implode( '/', $logMessage );
-			
 			$logInitId = date('YmdHis');
 			
-			log_message('critical', 'L01010[***]{logid}[***]{logtime}[***]{SERVER}[***]{getMessage}[***]{exception}', [
+			log_message('critical', SITE_ERROR_NAME.'[***]L01010[***]{logid}[***]{logtime}[***]{SERVER}[***]{getMessage}[***]{exception}', [
 					'logid' => $logInitId,
 					'logtime' => date('Y-m-d H:i:s'),
 					'getMessage' => json_encode($e->getMessage(), true),
@@ -49,25 +43,8 @@ class BaseModel extends Model
 					'SERVER' => json_encode($_SERVER, true),
 				]
 			);
-//
-//			log_message('critical', '[Site_error] {exception}', ['exception' => json_encode([
-//				$e->getMessage(),
-//				(array)$e,
-//				$_SERVER
-//			], true)]);
-//
-			
-			
-			
-			
 		}
-		
-		
-		
-
 	}
-	
-	
 	
 	public function returnModelDBError($params = array())
 	{
