@@ -18,7 +18,11 @@ class BaseModel extends Model
 		try {
 			$pQuery = $this->db->prepare(function($db)
 			{
-				$sql = "INSERT INTO1 tbl_error_log_master (log_message, log_code, log_data, server_data, regist_date) VALUES (?, ?, ?, ?, now())";
+				$sql = "
+					INSERT INTO tbl_log_master
+					(division, server_data, log_message, log_code, log_data, date_date, regist_date)
+					VALUES('L01010', ?, ?, ?, ?, now(), now());
+				";
 				
 				return (new Query($db))->setQuery($sql);
 			});

@@ -97,6 +97,8 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
  * site url router add
  */
 $routes->add('dev/test', 'Test::index', ['namespace' => 'App\Controllers\Dev']);
+$routes->add('command/test', 'Test::index', ['namespace' => 'App\Controllers\Command']);
+//$routes->add('command/dev/db', 'Db::index', ['namespace' => 'App\Controllers\Command\dev']);
 
 $routes->add('api/v1/pub/auth/authorize/(:any)', 'Authorize::$1', ['namespace' => 'App\Controllers\Api\v1\Pub\Auth']);
 
