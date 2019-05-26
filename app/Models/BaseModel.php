@@ -27,11 +27,11 @@ class BaseModel extends Model
 		}
 		catch (\Exception $e)
 		{
-//			echo json_encode([
-//				$e->getMessage(),
-//				(array)$e,
-//				$_SERVER
-//			]);
+			echo json_encode([
+				$e->getMessage(),
+				(array)$e,
+				$_SERVER
+			]);
 //			log_message('ERROR', json_encode ($logMessage, JSON_FORCE_OBJECT));
 //			$jbstr = implode( '/', $logMessage );
 			

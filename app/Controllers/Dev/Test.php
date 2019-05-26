@@ -7,10 +7,21 @@ class Test extends ServiceController
 	
 	public function index()
 	{
+//		echo WRITEPATH . 'logs/';
 		
-		$a = file_get_contents("./log.txt");
+		$log_contents = file_get_contents(WRITEPATH . 'logs/'.'log-2019-05-25.php');
 		
-		print_r(json_decode(html_entity_decode($a)));
+		$arrayLog = explode(PHP_EOL, $log_contents);
+		
+		
+		echo "<pre>";
+		print_r($arrayLog);
+		
+		
+		$str = $arrayLog[30];
+		
+		echo $str;
+		echo "</pre>";
 	}
 	
 	//--------------------------------------------------------------------

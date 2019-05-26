@@ -79,7 +79,9 @@ class MasterModel extends BaseModel
 		catch (\Exception $e)
 		{
 			
-			$this->modelErrorProcess($e);
+			echo "asdas";
+			
+			BaseModel::modelErrorProcess($e);
 			// do something here...
 //			throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
 
