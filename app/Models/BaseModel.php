@@ -14,10 +14,8 @@ class BaseModel extends Model
 	
 	public function modelExceptionControl($e)
 	{
-		
 		try
 		{
-
 			$pQuery = $this->db->prepare(function($db)
 			{
 				$sql = "
@@ -48,115 +46,38 @@ class BaseModel extends Model
 		}
 	}
 	
-	public function returnModelDBError($params = array())
+	public function getResultControl($builder)
 	{
-		return [
-			'status' => false,
-			'dberror' => $params['message']
-		];
-	}
-	
-	public function returnModelDBSuccess($params = array())
-	{
-		return [
-			'status' =>true,
-		];
-	}
-	
-	public function returnModelData($params = array())
-	{
-		$resultCount = count($params);
+		$builderCount = $builder->countAll();
+		$result = $builder->get()->getResultArray();
 		
-		if($resultCount === 0)
-		{
-			return [
-				'status' => true,
-				'result' => false,
-				'count' => 0,
-				'data' => []
-			];
-		}
-		else if ($resultCount === 1)
-		{
-			$returnData = array();
-			foreach ($params[0] as $itemKey => $item)
-			{
-				$returnData[$itemKey] = $item;
-			}
-			return [
-				'status' => true,
-				'result' => true,
-				'count' => 1,
-				'data' => $returnData
-			];
-		}
-		else if ($resultCount > 1 )
-		{
-			return [
-				'status' => true,
-				'result' => true,
-				'count' => $resultCount,
-				'data' => $params
-			];
-		}
-		else
-		{
-			log_message('error', 'setModelReturnData : '.json_encode($params));
-			
-		}
-	}
-	
-	
-	public function returnModelData2($params = array())
-	{
-		$resultCount = count($params);
+		print_r($result);
 		
-		if($resultCount === 0)
+		if($builderCount == 1)
 		{
+			echo "1";
 			return [
-				'status' => true,
-				'result' => false,
-				'count' => 0,
-				'data' => []
+				'state' => true,
+				'data' => $result
 			];
 		}
-		else if($resultCount > 0)
+		else if($builderCount > 1)
 		{
-			return [
-				'status' => true,
-				'result' => true,
-				'count' => $resultCount,
-				'data' => $params
-			];
+			echo ">1";
+		
 		}
-		else
+		else if($builderCount == 0)
 		{
-			log_message('error', 'setModelReturnData : '.json_encode($params));
-			
+			echo "0";
+		
 		}
+//		$getResult = $params->getResultArray();
+		
+//		print_r($params->countAllResults());
+	
 	}
 	
-	public function returnModeDataNumRowType($params = 0)
-	{
-		if($params === 0)
-		{
-			return [
-				'status' => false,
-				'count' => 0,
-			];
-		}
-		else if ($params > 0)
-		{
-			return [
-				'status' => true,
-				'count' => $params,
-			];
-		}
-		else
-		{
-			log_message('error', 'setModelReturnData : '.json_encode($params));
-			
-		}
-	}
+	
+
 	
 }

@@ -15,6 +15,8 @@ class Test extends ServiceController
 	{
 		$master = new \App\Models\Api\MasterModel();
 		$result = $master->getTestData();
+		
+		print_r($result);
 	}
 	
 	

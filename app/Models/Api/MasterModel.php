@@ -61,13 +61,34 @@ class MasterModel extends BaseModel
 	{
 		try
 		{
-			$builder = $this->db->table('tbl_user_master');
-			$builder->select('*');
-			$query = $builder->get();
-			$result = $query->getResult();
-//			$error = $result->error();
-
-//			print_r($result);
+			
+//			$builder = $this->db->table('tbl_user_master');
+//
+//			$builder->select('*');
+//			$builder->limit(1);
+			
+			
+//			$builder->select('*')->from('tbl_user_master')
+//				->where('user_uid', '9edb34ed6fdb4edbeec5')
+//				->get();
+			
+			
+//			$builder->select('*')->from('my_table')
+//				->groupStart()
+//				->where('a', 'a')
+//				->orGroupStart()
+//				->where('b', 'b')
+//				->where('c', 'c')
+//				->groupEnd()
+//				->groupEnd()
+//				->where('d', 'd')
+//				->get();
+			
+//			$builder->get();
+			
+//			echo $builder->countAll();
+			
+//			return BaseModel::getResultControl($builder);
 			
 		}
 		catch (\Exception $e)
