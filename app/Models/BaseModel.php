@@ -10,6 +10,8 @@ class BaseModel extends Model
 	public function __construct()
 	{
 		parent::__construct();
+		
+//		print_r($this->db);
 	}
 	
 	public function modelExceptionControl($e)
@@ -48,29 +50,32 @@ class BaseModel extends Model
 	
 	public function getResultControl($builder)
 	{
-		$builderCount = $builder->countAll();
-		$result = $builder->get()->getResultArray();
+		print_r( $builder->get()->getResultArray());
 		
-		print_r($result);
+//		$result = $builder->getResultArray();
+//		$builderCount = $builder->countAll();
+//
+//		print_r($builderCount);
+//		print_r($result);
 		
-		if($builderCount == 1)
-		{
-			echo "1";
-			return [
-				'state' => true,
-				'data' => $result
-			];
-		}
-		else if($builderCount > 1)
-		{
-			echo ">1";
-		
-		}
-		else if($builderCount == 0)
-		{
-			echo "0";
-		
-		}
+//		if($builderCount == 1)
+//		{
+//			echo "1";
+//			return [
+//				'state' => true,
+//				'data' => $result
+//			];
+//		}
+//		else if($builderCount > 1)
+//		{
+//			echo ">1";
+//
+//		}
+//		else if($builderCount == 0)
+//		{
+//			echo "0";
+//
+//		}
 //		$getResult = $params->getResultArray();
 		
 //		print_r($params->countAllResults());

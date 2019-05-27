@@ -59,14 +59,75 @@ class MasterModel extends BaseModel
 	// test table
 	public function getTestData()
 	{
-		try
-		{
+		
+		$builder = $this->db->table();
+		$builder->select('*');
+		$builder->from('tbl_user_profile_master');
+		$query = $builder->get();  // Produces: SELECT title, content, date FROM mytable
+		
+		print_r($query->getResult());
+		
+//		$sql = $builder->select(array('field1','field2'))
+//			->where('field3',5)
+//			->getCompiledSelect(false);
+		
+
+//		print_r($this->db->protectIdentifiers('tbl_user_master'));
+		
+//				$builder = $this->db->table('tbl_user_master');
+//		$builder->resetQuery();
+//		$builder->select('*');
+//		$builder->where('user_uid', '9edb34ed6fdb4edbeec5');
+
+//			$builder->select('*')->from('tbl_user_master')->get();
+//
+//
+//		$queryResult = $this->db->get_where('tbl_user_master', array('user_uid' => '9edb34ed6fdb4edbeec5'));
+		
+//		$builder = $this->db;
+//			$builder->select('*')->from('tbl_user_master')
+//				->groupStart()
+//				->where('a', 'a')
+//				->orGroupStart()
+//				->where('b', 'b')
+//				->where('c', 'c')
+//				->groupEnd()
+//				->groupEnd()
+//				->where('d', 'd')
+//				->get();
+		
+//		$builder = $this->db->table('tbl_user_master')->select('*')->get()->getResultArray();
+//		print_r($builder);
+		
+//		$builder = $this->db->table('tbl_user_master');
+		
+//		try
+//		{
 			
 //			$builder = $this->db->table('tbl_user_master');
+//			$builder->where('user_uid', '9edb34ed6fdb4edbeec5');
 //
 //			$builder->select('*');
-//			$builder->limit(1);
 			
+//			$builder->get();
+			
+//			echo "1: ".$builder->countAll();  // Produces an integer, like 25
+//			echo PHP_EOL;
+//			$builder->like('user_uid', '9edb34ed6fdb4edbeec5');
+//			echo PHP_EOL;
+//			echo "2: ".$builder->countAllResults(); // Produces an integer, like 17
+			
+//
+//			$builder->select('*')->from('tbl_user_master')
+//				->groupStart()
+//				->where('a', 'a')
+//				->orGroupStart()
+//				->where('b', 'b')
+//				->where('c', 'c')
+//				->groupEnd()
+//				->groupEnd()
+//				->where('d', 'd')
+//				->get();
 			
 //			$builder->select('*')->from('tbl_user_master')
 //				->where('user_uid', '9edb34ed6fdb4edbeec5')
@@ -90,11 +151,12 @@ class MasterModel extends BaseModel
 			
 //			return BaseModel::getResultControl($builder);
 			
-		}
-		catch (\Exception $e)
-		{
-			BaseModel::modelExceptionControl($e);
-		}
+//		}
+//		catch (\Exception $e)
+//		{
+//			print_r($e->getMessage());
+//			BaseModel::modelExceptionControl($e);
+//		}
 		
 	}
 	
