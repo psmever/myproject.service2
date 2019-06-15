@@ -1,6 +1,7 @@
 <?php namespace App\Models\Api;
 
 use App\Models\BaseModel;
+use SebastianBergmann\CodeCoverage\Report\PHP;
 
 class MasterModel extends BaseModel
 {
@@ -56,16 +57,15 @@ class MasterModel extends BaseModel
 		$this->db->simple_query('SET FOREIGN_KEY_CHECKS = 1');
 	}
 	
-	// test table
-	public function getTestData()
+	// Model function Example
+	public function getExample()
 	{
-		
-		$builder = $this->db->table();
-		$builder->select('*');
-		$builder->from('tbl_user_profile_master');
-		$query = $builder->get();  // Produces: SELECT title, content, date FROM mytable
-		
-		print_r($query->getResult());
+//		$builder = $this->db->table('tbl_user_profile_master');
+//
+//		$builder->select('*');
+//		$query = $builder->get();  // Produces: SELECT title, content, date FROM mytable
+//
+//		print_r($query->getResultArray());
 		
 //		$sql = $builder->select(array('field1','field2'))
 //			->where('field3',5)
@@ -158,6 +158,51 @@ class MasterModel extends BaseModel
 //			BaseModel::modelExceptionControl($e);
 //		}
 		
+	}
+	
+	// test function
+	public function getTestData()
+	{
+		try {
+			
+			$builder = $this->db->table('tbl_user_profile_master');
+			$builder->select('*');
+			$builder->where('user_uid', '6a5de6d144bd6f7f2575');
+			$query   = $builder->get();
+			
+			
+//			print_r($builder->countAll(false));
+//			print_r($builder->countAllResults(false));
+			
+			print_r($builder->num_rows);
+			
+//			$query = $builder->getWhere(
+//								['user_uid' => '6a5de6d144bd6f7f2575'
+//								], 1, 0);
+//			print_r($query->getResultArray());
+//			print_r($query->countAllResults());
+//			print_r($query->countAllResults());
+//			print_r($query->countAll());
+//			print_r($builder->countAllResults());
+//			print_r($builder->countAll());
+			
+//			throw new \Exception($query->getResultArray());
+			
+		} catch(\Exception $e) {
+			
+//			echo 'catch : '.$e->getMessage().PHP_EOL;
+			
+//			throw $e;
+			
+		} finally {
+			
+//			echo "finally".PHP_EOL;
+			
+//			echo $e->getMessage()." finally \n";
+			
+//			throw new \Exception("Bye");
+		}
+
 	}
 	
 	// 회원 가입시 ip 로그

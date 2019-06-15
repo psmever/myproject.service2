@@ -14,6 +14,13 @@ class BaseModel extends Model
 //		print_r($this->db);
 	}
 	
+	public function __destruct ()
+	{
+		// TODO: Implement __destruct() method.
+		
+//		echo __FUNCTION__;
+	}
+	
 	public function modelExceptionControl($e)
 	{
 		try
