@@ -26,6 +26,10 @@
 composer install
 ```
 
+```sh
+composer update
+```
+
 ## Usage
 
 ```sh
