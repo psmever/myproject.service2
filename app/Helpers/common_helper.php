@@ -534,7 +534,7 @@ if ( ! function_exists('encrypt_decrypt'))
 	 * 간단한 암호화
 	 *
 	 * $message    = "This text is secret";
-	 * $ciphertext =  encrypt_decrypt('encrypt',$fline text);
+	 * $ciphertext =  encrypt_decrypt('encrypt', $fline text);
 	 * $plaintext  =  encrypt_decrypt('decrypt', $enc_text);
 	 */
 	function encrypt_decrypt ($action, $string)

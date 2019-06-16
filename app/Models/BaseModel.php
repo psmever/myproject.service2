@@ -3,6 +3,8 @@
 use CodeIgniter\Model;
 use CodeIgniter\Database\Query;
 
+class MyException extends \Exception { }
+
 class BaseModel extends Model
 {
 	public $db;
@@ -57,19 +59,26 @@ class BaseModel extends Model
 	
 	public function getResultControl($resultData = array())
 	{
+		echo "<pre>";
 		try {
 			
 			$resultCount = count($resultData);
 			
+			throw new MyException('asdas');
 			
+		}
+		catch ( MyException $e)
+		{
+			echo "MyException".PHP_EOL;
+			print_r($e->getMessage());
 		
-		} catch ( Exception $e) {
+		} catch ( \Exception $e) {
 		
 		} finally {
 		
 		}
-
-	
+		
+		echo "</pre>";
 	}
 	
 	
