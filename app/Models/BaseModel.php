@@ -2,6 +2,13 @@
 
 use CodeIgniter\Model;
 use CodeIgniter\Database\Query;
+use mysql_xdevapi\Exception;
+use SebastianBergmann\CodeCoverage\Report\PHP;
+
+
+
+
+//class getResultControlException extends \Exception {};
 
 class BaseModel extends Model
 {
@@ -57,17 +64,16 @@ class BaseModel extends Model
 	
 	public function getResultControl($resultData = array())
 	{
-		try {
-			
-			$resultCount = count($resultData);
-			
-			
 		
-		} catch ( Exception $e) {
-		
-		} finally {
+		try
+		{
+			throw new \CodeIgniter\DatabaseException();
+			
+		} catch (\Exception $e)
+		{
 		
 		}
+		
 
 	
 	}
