@@ -1,7 +1,7 @@
 <?php namespace App\Models\Api;
 
 use App\Models\BaseModel;
-use SebastianBergmann\CodeCoverage\Report\PHP;
+
 
 class MasterModel extends BaseModel
 {
@@ -118,30 +118,18 @@ class MasterModel extends BaseModel
 	{
 		try {
 			
-			$builder = $this->db->table('tbl_photofriend_data');
-			
+			$builder = $this->db->table('tbl_photofriend_data1');
 			$builder->select('*');
 			$builder->where('idx', '20');
-			$query   = $builder->get();
+			$query = $builder->get();
 			
-//			print_r($query->getResultArray());
-			$this::getResultControl($query->getResultArray());
-//			throw new \Exception($query->getResultArray());
-			
+			$queryResult = $this::setResultControl($query->getResultArray());
 		} catch(\Exception $e) {
-			
-			echo 'catch : '.$e->getMessage().PHP_EOL;
-			
-//			throw $e;
-			
+			BaseModel::modelExceptionControl($e);
+			$queryResult = $this::setExceptionResult();
 		} finally {
-			
-//			echo "finally".PHP_EOL;
-			
-			echo $e->getMessage()." finally \n";
-			
-//			throw new \Exception("Bye");
+			return $queryResult;
 		}
-
+		
 	}
 }

@@ -17,6 +17,8 @@ class Test extends ServiceController
 		$result = $master->getTestData();
 		
 		print_r($result);
+		
+		// REST API 세팅 해야함.
 	}
 	
 	
