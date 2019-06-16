@@ -55,37 +55,20 @@ class BaseModel extends Model
 		}
 	}
 	
-	public function getResultControl($builder)
+	public function getResultControl($resultData = array())
 	{
-		print_r( $builder->get()->getResultArray());
+		try {
+			
+			$resultCount = count($resultData);
+			
+			
 		
-//		$result = $builder->getResultArray();
-//		$builderCount = $builder->countAll();
-//
-//		print_r($builderCount);
-//		print_r($result);
+		} catch ( Exception $e) {
 		
-//		if($builderCount == 1)
-//		{
-//			echo "1";
-//			return [
-//				'state' => true,
-//				'data' => $result
-//			];
-//		}
-//		else if($builderCount > 1)
-//		{
-//			echo ">1";
-//
-//		}
-//		else if($builderCount == 0)
-//		{
-//			echo "0";
-//
-//		}
-//		$getResult = $params->getResultArray();
+		} finally {
 		
-//		print_r($params->countAllResults());
+		}
+
 	
 	}
 	
