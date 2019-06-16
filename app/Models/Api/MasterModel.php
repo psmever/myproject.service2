@@ -190,7 +190,7 @@ class MasterModel extends BaseModel
 			
 		} catch(\Exception $e) {
 			
-//			echo 'catch : '.$e->getMessage().PHP_EOL;
+			echo 'catch : '.$e->getMessage().PHP_EOL;
 			
 //			throw $e;
 			
@@ -198,7 +198,7 @@ class MasterModel extends BaseModel
 			
 //			echo "finally".PHP_EOL;
 			
-//			echo $e->getMessage()." finally \n";
+			echo $e->getMessage()." finally \n";
 			
 //			throw new \Exception("Bye");
 		}
