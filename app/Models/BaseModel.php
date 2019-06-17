@@ -24,6 +24,14 @@ class BaseModel extends Model
 		
 	}
 	
+	/**
+	 * @param $exceptionError
+	 *
+	 * 모델에서 에러 났을떄
+	 *
+	 * 1차 -> 디비에저장
+	 * 1차 실패시 로그 디렉토리에 파일로 저장.
+	 */
 	public function modelExceptionControl($exceptionError)
 	{
 		try
@@ -66,13 +74,28 @@ class BaseModel extends Model
 		}
 	}
 	
+	/**
+	 * @return array
+	 * 모델에서 Exception 에러 났을떄 반환.
+	 */
 	public function setExceptionResult()
 	{
 		return [
 			'status' => false,
 			'message' => '데이터 베이스 에러가 발생 했습니다.',
-			'count' => 0,
-			'data' => []
+		];
+	}
+	
+	/**
+	 * @return array
+	 *
+	 * 그냥 성공시 성공 반환
+	 */
+	public function setSuccessResult()
+	{
+		return [
+			'status' => true,
+			'message' => '성공 했습니다.',
 		];
 	}
 	
